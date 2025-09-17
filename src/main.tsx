@@ -5,6 +5,8 @@ import I18nProvider from "./i18n";
 import router from "./routes/AppRoutes";
 import { ToastContainer } from "react-toastify";
 import './assets/scss/main.scss';
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
 import { GlobalProvider, useGlobalContext } from "./context/GlobalContext";
 
 

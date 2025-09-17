@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import instance from "../../interceptors/axios";
-import { Banner } from "../common";
 import { Box } from "@mui/material";
+import { Banner } from "./Banner";
 
 export const GenericErrorMsg = ({
   title,

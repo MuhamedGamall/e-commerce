@@ -1,0 +1,143 @@
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 16px;
+  .sort-select {
+    min-width: 160px;
+    font-size: 13px;
+  }
+
+  .products-info {
+    font-size: 13px;
+    color: #333;
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  .view-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .toggle-btn {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: #fff;
+      cursor: pointer;
+
+      &.active {
+        background: #000;
+        color: #fff;
+      }
+    }
+  }
+}
+.sidebar {
+  width: 308px;
+  height: 1256px;
+  padding: 16px;
+  gap: 16px;
+  border-radius: 4px;
+  border: 0.5px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .filter-title {
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .reset-btn {
+    font-size: 12px;
+    text-transform: none;
+    color: #000;
+    cursor: pointer;
+  }
+}
+
+.applied-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  .chip {
+    background: #f4f4f4;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    .chip-remove {
+      font-size: 12px;
+      min-width: auto;
+      padding: 0;
+      color: #555;
+      text-transform: none;
+      line-height: 1;
+      cursor: pointer;
+    }
+  }
+}
+
+.filter-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  .section-title {
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+
+  .checkbox-group {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+  }
+
+  .price-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-top: -8px;
+  }
+
+  .rating-options {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .star-icon {
+      color: gold;
+      font-size: 14px;
+    }
+  }
+}
+

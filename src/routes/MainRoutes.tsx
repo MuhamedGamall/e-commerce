@@ -1,6 +1,6 @@
 import { redirect } from "react-router-dom";
 import { lazy } from "react";
-
+const Test = lazy(() => import("../pages/category"));
 import { MainLayout } from "../layouts";
 
 const MainRoutes = [
@@ -24,8 +24,14 @@ const MainRoutes = [
   // },
   {
     path: "/:locale",
-    element: <MainLayout />,
-    children: []
+    element: <Test />,
+    children: [
+      {
+        index: true,
+
+        element: <Test />,
+      },
+    ],
   },
 ];
 
