@@ -1,7 +1,30 @@
 {
   "Common": {
-    "Actions": {},
-    "DropzoneField": {}
+    "Actions": {
+      "Save": "Save",
+      "Cancel": "Cancel",
+      "Continue": "Continue",
+      "Confirm": "Confirm",
+      "Downloading": "Downloading...",
+      "Saving": "Saving...",
+      "Processing": "Processing...",
+      "Resend": "Resend",
+      "View": "View",
+      "Edit": "Edit",
+      "Assign": "Assign",
+      "Download": "Download {str}",
+      "Send": "Send {str}",
+      "Select": "Select {str}",
+      "Close": "Close",
+      "Uploading": "Uploading...",
+      "Assigning": "Assigning...",
+      "ClearSearch": "Clear Search"
+    },
+    "DropzoneField": {
+      "ContentLabel": "Drag & drop files here, or click to upload",
+      "DropHere": "Drop the file here...",
+      "Rejected": "Some files were rejected. Please select a maximum of {max} {fileLabel} and only accepted formats ({formats})"
+    }
   },
   "Pages": {}
 }

@@ -1,7 +1,30 @@
 {
   "Common": {
-    "Actions": {},
-    "DropzoneField": {}
-  },
-  "Pages": {}
+    "Actions": {
+      "Save": "حفظ",
+      "Cancel": "إلغاء",
+      "Continue": "متابعة",
+      "Confirm": "تأكيد",
+      "Downloading": "جاري التنزيل...",
+      "Saving": "جاري الحفظ...",
+      "Processing": "جاري المعالجة...",
+      "Resend": "إعادة الإرسال",
+      "View": "عرض",
+      "Edit": "تعديل",
+      "Assign": "تعيين",
+      "Download": "تنزيل {str}",
+      "Send": "إرسال {str}",
+      "Select": "اختيار {str}",
+      "Close": "إغلاق",
+      "Uploading": "جاري الرفع...",
+      "Assigning": "جاري التعيين...",
+      "ClearSearch": "مسح البحث"
+    },
+    "DropzoneField": {
+      "ContentLabel": "اسحب الملفات هنا أو انقر للتحميل",
+      "DropHere": "أفلت الملف هنا...",
+      "Rejected": "تم رفض بعض الملفات. يرجى اختيار ما لا يزيد عن {max} {fileLabel} وبصيغة من الصيغ المسموح بها ({formats})"
+    },
+    "Pages": {}
+  }
 }
