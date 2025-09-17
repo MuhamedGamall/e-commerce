@@ -5,7 +5,7 @@ import {
   useState,
 } from "react";
 import { CurrentUserModel } from "../models/user/CurrentUserModel";
-import { GetCurrentUser } from "../services/CurrentUserService";
+// import { GetCurrentUser } from "../services/CurrentUserService";
 
 interface GlobalContextProps {
   currentUser: CurrentUserModel | null | undefined;
