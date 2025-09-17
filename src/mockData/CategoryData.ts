@@ -2,7 +2,7 @@
 export const mockProducts = [
   {
     id: 1,
-    title: "Premium Headphones",
+    title: "Product Name",
     description: "High-quality wireless headphones with noise cancellation",
     price: 299,
     image: "/api/placeholder/300/300",
@@ -13,7 +13,7 @@ export const mockProducts = [
   },
   {
     id: 2,
-    title: "Smart Watch",
+    title: "Product Name",
     description: "Advanced fitness tracking and notifications",
     price: 399,
     image: "/api/placeholder/300/300",
@@ -24,7 +24,7 @@ export const mockProducts = [
   },
   {
     id: 3,
-    title: "Leather Jacket",
+    title: "Product Name",
     description: "Genuine leather jacket with modern design",
     price: 199,
     image: "/api/placeholder/300/300",

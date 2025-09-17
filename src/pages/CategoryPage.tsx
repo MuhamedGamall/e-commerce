@@ -12,70 +12,58 @@ import {
 } from "lucide-react";
 import { Filters, Product } from "../types/CategoryTypes";
 import { heroSlides, mockProducts } from "../mockData/CategoryData";
+import { ProductCard } from "../components";
 
 // Components
 const Breadcrumbs = () => (
-  <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-6">
+  <nav className="breadcrumbs">
     <span>Home</span>
-    <ChevronRight className="w-4 h-4" />
+    <ChevronRight className="chevron" />
     <span>Category</span>
-    <ChevronRight className="w-4 h-4" />
-    <span className="text-gray-900 font-medium">Products</span>
+    <ChevronRight className="chevron" />
+    <span className="current">Products</span>
   </nav>
 );
 
 const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
   };
-
   const prevSlide = () => {
     setCurrentSlide(
       (prev) => (prev - 1 + heroSlides.length) % heroSlides.length
     );
   };
-
   return (
-    <div className="relative mb-8 overflow-hidden rounded-lg bg-gray-900">
+    <div className="hero-slider">
       <div
-        className="flex transition-transform duration-500 ease-in-out"
+        className="slides-container"
         style={{ transform: `translateX(-${currentSlide * 100}%)` }}
       >
         {heroSlides.map((slide) => (
-          <div key={slide.id} className="w-full flex-shrink-0 relative">
-            <div className="h-64 bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center text-white">
-              <div className="text-center">
-                <h2 className="text-4xl font-bold mb-2">{slide.title}</h2>
-                <p className="text-xl opacity-90">{slide.description}</p>
+          <div key={slide.id} className="slide">
+            <div className="content">
+              <div className="text-container">
+                <h2>{slide.title}</h2>
+                <p>{slide.description}</p>
               </div>
             </div>
           </div>
         ))}
       </div>
-
-      <button
-        onClick={prevSlide}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm text-white p-2 rounded-full hover:bg-white/30 transition-colors"
-      >
-        <ChevronLeft className="w-6 h-6" />
+      <button onClick={prevSlide} className="nav-button prev">
+        <ChevronLeft />
       </button>
-      <button
-        onClick={nextSlide}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-sm text-white p-2 rounded-full hover:bg-white/30 transition-colors"
-      >
-        <ChevronRight className="w-6 h-6" />
+      <button onClick={nextSlide} className="nav-button next">
+        <ChevronRight />
       </button>
-
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+      <div className="dots">
         {heroSlides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full transition-colors ${
-              index === currentSlide ? "bg-white" : "bg-white/50"
-            }`}
+            className={`dot ${index === currentSlide ? "active" : ""}`}
           />
         ))}
       </div>
@@ -83,127 +71,18 @@ const HeroSlider = () => {
   );
 };
 
-const StarRating = ({ rating }: { rating: number }) => (
-  <div className="flex items-center">
+const StarRating = ({ rating }) => (
+  <div className="star-rating">
     {[1, 2, 3, 4, 5].map((star) => (
       <Star
         key={star}
-        className={`w-4 h-4 ${
-          star <= rating ? "text-yellow-400 fill-current" : "text-gray-300"
-        }`}
+        className={`star ${star <= rating ? "filled" : "empty"}`}
       />
     ))}
   </div>
 );
 
-const ProductCard = ({
-  product,
-  isListView,
-}: {
-  product: Product;
-  isListView: boolean;
-}) => {
-  const [isFavorite, setIsFavorite] = useState(false);
-
-  if (isListView) {
-    return (
-      <div className="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-300 flex items-center space-x-4">
-        <div className="relative flex-shrink-0">
-          <div className="w-24 h-24 bg-gray-200 rounded-lg flex items-center justify-center">
-            <div className="w-16 h-16 bg-gray-300 rounded"></div>
-          </div>
-          {product.isNew && (
-            <span className="absolute -top-2 -left-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
-              New
-            </span>
-          )}
-        </div>
-
-        <div className="flex-grow">
-          <h3 className="font-semibold text-lg mb-1">{product.title}</h3>
-          <p className="text-gray-600 text-sm mb-2">{product.description}</p>
-          <StarRating rating={product.rating} />
-        </div>
-
-        <div className="flex flex-col items-end space-y-2">
-          <span className="text-2xl font-bold text-blue-600">
-            ${product.price}
-          </span>
-          <div className="flex space-x-2">
-            <button
-              onClick={() => setIsFavorite(!isFavorite)}
-              className={`p-2 rounded-full transition-colors ${
-                isFavorite
-                  ? "bg-red-100 text-red-600"
-                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-              }`}
-            >
-              <Heart
-                className={`w-4 h-4 ${isFavorite ? "fill-current" : ""}`}
-              />
-            </button>
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2">
-              <ShoppingCart className="w-4 h-4" />
-              <span>Add to Cart</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-      <div className="relative">
-        <div className="h-48 bg-gray-200 flex items-center justify-center">
-          <div className="w-32 h-32 bg-gray-300 rounded-lg"></div>
-        </div>
-        {product.isNew && (
-          <span className="absolute top-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
-            New
-          </span>
-        )}
-        <button
-          onClick={() => setIsFavorite(!isFavorite)}
-          className={`absolute top-2 right-2 p-2 rounded-full transition-colors ${
-            isFavorite
-              ? "bg-red-100 text-red-600"
-              : "bg-white text-gray-600 hover:bg-gray-100"
-          }`}
-        >
-          <Heart className={`w-4 h-4 ${isFavorite ? "fill-current" : ""}`} />
-        </button>
-      </div>
-
-      <div className="p-4">
-        <h3 className="font-semibold text-lg mb-2">{product.title}</h3>
-        <p className="text-gray-600 text-sm mb-3">{product.description}</p>
-        <div className="flex items-center justify-between mb-3">
-          <StarRating rating={product.rating} />
-          <span className="text-xl font-bold text-blue-600">
-            ${product.price}
-          </span>
-        </div>
-        <button className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2">
-          <ShoppingCart className="w-4 h-4" />
-          <span>Add to Cart</span>
-        </button>
-      </div>
-    </div>
-  );
-};
-
-const Sidebar = ({
-  filters,
-  setFilters,
-  isOpen,
-  setIsOpen,
-}: {
-  filters: Filters;
-  setFilters: (filters: Filters) => void;
-  isOpen: boolean;
-  setIsOpen: (open: boolean) => void;
-}) => {
+const Sidebar = ({ filters, setFilters, isOpen, setIsOpen }) => {
   const categories = ["Electronics", "Fashion", "Home", "Sports"];
   const locations = [
     "All",
@@ -220,8 +99,7 @@ const Sidebar = ({
     "Michigan",
     "Illinois",
   ];
-
-  const handleCategoryChange = (category: string, checked: boolean) => {
+  const handleCategoryChange = (category, checked) => {
     if (checked) {
       setFilters({ ...filters, categories: [...filters.categories, category] });
     } else {
@@ -231,35 +109,29 @@ const Sidebar = ({
       });
     }
   };
-
   const sidebarContent = (
-    <div className="space-y-6">
-      <h3 className="text-lg font-semibold">Filters</h3>
-
-      {/* Categories */}
-      <div>
-        <h4 className="font-medium mb-3">Categories</h4>
-        <div className="space-y-2">
+    <div className="filters">
+      <h3>Filters</h3>
+      <div className="section categories">
+        <h4>Categories</h4>
+        <div>
           {categories.map((category) => (
-            <label key={category} className="flex items-center space-x-2">
+            <label key={category} className="category">
               <input
                 type="checkbox"
                 checked={filters.categories.includes(category)}
                 onChange={(e) =>
                   handleCategoryChange(category, e.target.checked)
                 }
-                className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
               />
-              <span className="text-sm">{category}</span>
+              <span>{category}</span>
             </label>
           ))}
         </div>
       </div>
-
-      {/* Price Range */}
-      <div>
-        <h4 className="font-medium mb-3">Price Range</h4>
-        <div className="space-y-3">
+      <div className="section price-range">
+        <h4>Price Range</h4>
+        <div>
           <input
             type="range"
             min="0"
@@ -271,22 +143,19 @@ const Sidebar = ({
                 priceRange: [0, parseInt(e.target.value)],
               })
             }
-            className="w-full"
+            className="slider"
           />
-          <div className="flex justify-between text-sm text-gray-600">
+          <div className="range-values">
             <span>$0</span>
             <span>${filters.priceRange[1]}</span>
           </div>
         </div>
       </div>
-
-      {/* Location */}
-      <div>
-        <h4 className="font-medium mb-3">Location</h4>
+      <div className="section location">
+        <h4>Location</h4>
         <select
           value={filters.location}
           onChange={(e) => setFilters({ ...filters, location: e.target.value })}
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
         >
           {locations.map((location) => (
             <option key={location} value={location}>
@@ -295,59 +164,42 @@ const Sidebar = ({
           ))}
         </select>
       </div>
-
-      {/* Rating */}
-      <div>
-        <h4 className="font-medium mb-3">Minimum Rating</h4>
-        <div className="space-y-2">
+      <div className="section rating">
+        <h4>Minimum Rating</h4>
+        <div>
           {[5, 4, 3, 2, 1].map((rating) => (
-            <label key={rating} className="flex items-center space-x-2">
+            <label key={rating} className="rating-option">
               <input
                 type="radio"
                 name="rating"
                 checked={filters.minRating === rating}
                 onChange={() => setFilters({ ...filters, minRating: rating })}
-                className="text-blue-600 focus:ring-blue-500"
               />
               <StarRating rating={rating} />
-              <span className="text-sm">& up</span>
+              <span>& up</span>
             </label>
           ))}
         </div>
       </div>
-
-      {/* Map Placeholder */}
-      <div>
-        <h4 className="font-medium mb-3">Location Map</h4>
-        <div className="h-32 bg-blue-100 rounded-lg flex items-center justify-center">
-          <span className="text-blue-600 text-sm">Map View</span>
+      <div className="section map">
+        <h4>Location Map</h4>
+        <div className="map-placeholder">
+          <span>Map View</span>
         </div>
       </div>
     </div>
   );
-
   return (
     <>
-      {/* Desktop Sidebar */}
-      <div className="hidden lg:block w-64 bg-white rounded-lg shadow-md p-6 h-fit sticky top-4">
-        {sidebarContent}
-      </div>
-
-      {/* Mobile Filter Drawer */}
+      <div className="sidebar desktop">{sidebarContent}</div>
       {isOpen && (
-        <div className="lg:hidden fixed inset-0 z-50 flex">
-          <div
-            className="fixed inset-0 bg-black bg-opacity-50"
-            onClick={() => setIsOpen(false)}
-          />
-          <div className="relative bg-white w-80 max-w-sm h-full overflow-y-auto p-6">
-            <div className="flex justify-between items-center mb-6">
-              <h3 className="text-lg font-semibold">Filters</h3>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="text-gray-500 hover:text-gray-700"
-              >
-                <X className="w-6 h-6" />
+        <div className="sidebar mobile open">
+          <div className="overlay" onClick={() => setIsOpen(false)} />
+          <div className="content">
+            <div className="header">
+              <h3>Filters</h3>
+              <button onClick={() => setIsOpen(false)} className="close-button">
+                <X />
               </button>
             </div>
             {sidebarContent}
@@ -358,17 +210,8 @@ const Sidebar = ({
   );
 };
 
-const Pagination = ({
-  currentPage,
-  totalPages,
-  onPageChange,
-}: {
-  currentPage: number;
-  totalPages: number;
-  onPageChange: (page: number) => void;
-}) => {
+const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const [goToPage, setGoToPage] = useState("");
-
   const handleGoToPage = () => {
     const page = parseInt(goToPage);
     if (page >= 1 && page <= totalPages) {
@@ -376,29 +219,25 @@ const Pagination = ({
       setGoToPage("");
     }
   };
-
   return (
-    <div className="flex items-center justify-between mt-8">
-      <div className="flex items-center space-x-2">
+    <div className="pagination">
+      <div className="nav-buttons">
         <button
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className="px-3 py-2 border border-gray-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+          className="prev-next"
         >
           Previous
         </button>
-
-        <div className="flex items-center space-x-1">
+        <div>
           {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
             const page = i + 1;
             return (
               <button
                 key={page}
                 onClick={() => onPageChange(page)}
-                className={`px-3 py-2 rounded-lg ${
-                  currentPage === page
-                    ? "bg-blue-600 text-white"
-                    : "border border-gray-300 hover:bg-gray-50"
+                className={`page-button ${
+                  currentPage === page ? "active" : "inactive"
                 }`}
               >
                 {page}
@@ -406,30 +245,24 @@ const Pagination = ({
             );
           })}
         </div>
-
         <button
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className="px-3 py-2 border border-gray-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
+          className="prev-next"
         >
           Next
         </button>
       </div>
-
-      <div className="flex items-center space-x-2">
-        <span className="text-sm text-gray-600">Go to page:</span>
+      <div className="go-to-page">
+        <span>Go to page:</span>
         <input
           type="number"
           min="1"
           max={totalPages}
           value={goToPage}
           onChange={(e) => setGoToPage(e.target.value)}
-          className="w-16 px-2 py-1 border border-gray-300 rounded text-center text-sm"
         />
-        <button
-          onClick={handleGoToPage}
-          className="px-3 py-1 bg-blue-600 text-white rounded text-sm hover:bg-blue-700"
-        >
+        <button onClick={handleGoToPage} className="go-button">
           Go
         </button>
       </div>
@@ -438,37 +271,37 @@ const Pagination = ({
 };
 
 const Footer = () => (
-  <footer className="bg-gray-900 text-white mt-16">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div>
-          <h3 className="text-lg font-semibold mb-4">About Us</h3>
-          <p className="text-gray-300 text-sm">
+  <footer className="footer">
+    <div className="container">
+      <div className="grid">
+        <div className="section">
+          <h3>About Us</h3>
+          <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </div>
-        <div>
-          <h3 className="text-lg font-semibold mb-4">Customer Service</h3>
-          <ul className="space-y-2 text-sm text-gray-300">
+        <div className="section">
+          <h3>Customer Service</h3>
+          <ul>
             <li>Contact Us</li>
             <li>FAQ</li>
             <li>Shipping Info</li>
             <li>Returns</li>
           </ul>
         </div>
-        <div>
-          <h3 className="text-lg font-semibold mb-4">Company</h3>
-          <ul className="space-y-2 text-sm text-gray-300">
+        <div className="section">
+          <h3>Company</h3>
+          <ul>
             <li>Careers</li>
             <li>Press</li>
             <li>Investors</li>
             <li>Terms of Service</li>
           </ul>
         </div>
-        <div>
-          <h3 className="text-lg font-semibold mb-4">Connect</h3>
-          <ul className="space-y-2 text-sm text-gray-300">
+        <div className="section">
+          <h3>Connect</h3>
+          <ul>
             <li>Newsletter</li>
             <li>Social Media</li>
             <li>Blog</li>
@@ -476,7 +309,7 @@ const Footer = () => (
           </ul>
         </div>
       </div>
-      <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
+      <div className="copyright">
         <p>&copy; 2025 Your Company Name. All rights reserved.</p>
       </div>
     </div>
@@ -485,18 +318,16 @@ const Footer = () => (
 
 // Main Component
 export function CategoryPage() {
-  const [filters, setFilters] = useState<Filters>({
+  const [filters, setFilters] = useState({
     categories: [],
     priceRange: [0, 1000],
     location: "All",
     minRating: 1,
   });
-
   const [sortBy, setSortBy] = useState("newest");
   const [isListView, setIsListView] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
-
   const itemsPerPage = 6;
 
   // Filter and sort products
@@ -509,10 +340,8 @@ export function CategoryPage() {
       const locationMatch =
         filters.location === "All" || product.location === filters.location;
       const ratingMatch = product.rating >= filters.minRating;
-
       return categoryMatch && priceMatch && locationMatch && ratingMatch;
     });
-
     // Sort products
     switch (sortBy) {
       case "price-low":
@@ -529,7 +358,6 @@ export function CategoryPage() {
         filtered.sort((a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0));
         break;
     }
-
     return filtered;
   }, [filters, sortBy]);
 
@@ -546,81 +374,58 @@ export function CategoryPage() {
   }, [filters, sortBy]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div className="category-page">
+      <div className="container">
         <Breadcrumbs />
         <HeroSlider />
-
-        <div className="flex gap-6">
+        <div className="content">
           <Sidebar
             filters={filters}
             setFilters={setFilters}
             isOpen={isMobileFiltersOpen}
             setIsOpen={setIsMobileFiltersOpen}
           />
-
-          <div className="flex-1">
-            {/* Header Controls */}
-            <div className="bg-white rounded-lg shadow-md p-4 mb-6">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between space-y-4 sm:space-y-0">
-                <div className="flex items-center space-x-4">
+          <div className="main">
+            <div className="header-controls">
+              <div className="controls-container">
+                <div className="left-controls">
                   <button
                     onClick={() => setIsMobileFiltersOpen(true)}
-                    className="lg:hidden flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+                    className="filter-button"
                   >
-                    <Filter className="w-4 h-4" />
+                    <Filter />
                     <span>Filters</span>
                   </button>
-
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value)}
-                    className="border border-gray-300 rounded-lg px-3 py-2 text-sm"
                   >
                     <option value="newest">Newest First</option>
                     <option value="price-low">Price: Low to High</option>
                     <option value="price-high">Price: High to Low</option>
                     <option value="rating">Highest Rated</option>
                   </select>
-
-                  <span className="text-sm text-gray-600">
+                  <span className="product-count">
                     {filteredProducts.length} products found
                   </span>
                 </div>
-
-                <div className="flex items-center space-x-2">
+                <div className="view-toggle">
                   <button
                     onClick={() => setIsListView(false)}
-                    className={`p-2 rounded-lg ${
-                      !isListView
-                        ? "bg-blue-600 text-white"
-                        : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                    }`}
+                    className={isListView ? "inactive" : "active"}
                   >
-                    <Grid className="w-4 h-4" />
+                    <Grid />
                   </button>
                   <button
                     onClick={() => setIsListView(true)}
-                    className={`p-2 rounded-lg ${
-                      isListView
-                        ? "bg-blue-600 text-white"
-                        : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                    }`}
+                    className={isListView ? "active" : "inactive"}
                   >
-                    <List className="w-4 h-4" />
+                    <List />
                   </button>
                 </div>
               </div>
             </div>
-
-            {/* Products Grid */}
-            <div
-              className={`${
-                isListView
-                  ? "space-y-4"
-                  : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-              } transition-all duration-300`}
-            >
+            <div className={`products-grid ${isListView ? "list" : "grid"}`}>
               {paginatedProducts.map((product) => (
                 <ProductCard
                   key={product.id}
@@ -629,15 +434,11 @@ export function CategoryPage() {
                 />
               ))}
             </div>
-
             {filteredProducts.length === 0 && (
-              <div className="text-center py-12">
-                <p className="text-gray-500 text-lg">
-                  No products found matching your criteria.
-                </p>
+              <div className="no-products">
+                <p>No products found matching your criteria.</p>
               </div>
             )}
-
             {totalPages > 1 && (
               <Pagination
                 currentPage={currentPage}
@@ -648,7 +449,6 @@ export function CategoryPage() {
           </div>
         </div>
       </div>
-
       <Footer />
     </div>
   );
