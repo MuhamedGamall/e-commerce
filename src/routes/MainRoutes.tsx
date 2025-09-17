@@ -2,7 +2,8 @@ import { redirect } from "react-router-dom";
 import { lazy } from "react";
 
 import { MainLayout } from "../layouts";
-
+const FAQs = lazy(() => import("../pages/FAQs"));
+const TermsConditions = lazy(() => import("../pages/terms-conditions"));
 const MainRoutes = [
   {
     path: "/",
@@ -25,7 +26,16 @@ const MainRoutes = [
   {
     path: "/:locale",
     element: <MainLayout />,
-    children: []
+    children: [
+      {
+        path: "terms-conditions",
+        element: <TermsConditions />,
+      },
+      {
+        path: "FAQs",
+        element: <FAQs />,
+      },
+    ],
   },
 ];
 

@@ -1,21 +1,12 @@
-@import "./NavbarStyle/NavBar.scss";
 @import "./_variables";
 @import "./_mediaquery";
 @import "./_form";
-@import "./_customButton";
-@import "./toolBar/CustomeToolBar.scss";
-@import "./statos/statos.scss";
-@import "./filter/filter.scss";
-@import "./table/index.scss";
-@import "./auth/index.scss";
-@import "./_dialog";
 @import "./_toast";
 @import "./_drop-down";
 @import "./_animations";
-@import './layouts/index.scss';
-@import './navigation/index.scss';
 @import './_breadcramb.scss';
 @import './pages/index.scss';
+@import './carousel.scss';
 
 
 
@@ -24,18 +15,20 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Cairo", sans-serif !important;
-
+  font-family: "Inter", sans-serif !important;
 }
-body {
-  background-color: #dedede;  
+
+.container {
+  max-width: 1300px;
+  padding:20px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-// hide file input text
 input[type="file"] {
   color: transparent;
 }
