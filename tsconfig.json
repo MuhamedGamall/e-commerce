@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "noEmit": true,
+    "incremental": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noImplicitThis": false,
+    "jsx": "react-jsx",
+    "strictNullChecks": true,
+    "baseUrl": ".",
+    "paths": {
+      "@hooks": ["./src/hooks/index"],
+      "@routes": ["./src/routes/index"],
+      "@layouts": ["./src/layouts/index"],
+      "@pages": ["src/pages/index"],
+      "@components": ["./src/components/index"],
+      "@libs": ["./src/libs/index"],
+      "@services": ["./src/services/"],
+      "@schemas": ["./src/schemas/"],
+      "@types": ["./src/types/"],
+      "@zustand": ["./src/zustand"],
+      "@utils": ["./src/utils/index"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}

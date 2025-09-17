@@ -1,0 +1,63 @@
+@import "./NavbarStyle/NavBar.scss";
+@import "./_variables";
+@import "./_mediaquery";
+@import "./_form";
+@import "./_customButton";
+@import "./toolBar/CustomeToolBar.scss";
+@import "./statos/statos.scss";
+@import "./filter/filter.scss";
+@import "./table/index.scss";
+@import "./auth/index.scss";
+@import "./_dialog";
+@import "./_toast";
+@import "./_drop-down";
+@import "./_animations";
+@import './layouts/index.scss';
+@import './navigation/index.scss';
+@import './_breadcramb.scss';
+@import './pages/index.scss';
+
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Cairo", sans-serif !important;
+
+}
+body {
+  background-color: #dedede;  
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+// hide file input text
+input[type="file"] {
+  color: transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F1F1F6;
+  padding: 2px;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #A9ACAA;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #989b99;
+}

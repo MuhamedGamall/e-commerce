@@ -1,0 +1,139 @@
+// Global Colors
+$color-primary: #192A56;
+$color-primary-hover: #162855;
+$color-secondary: #eeeeee;
+$color-accent: #FF9500;
+$color-danger: #FF3B30;
+$color-background: #dfdfdf;
+$color-text: #1C1C1E;
+
+
+
+
+
+
+
+
+$primary-color: #1c5c8c;
+$primary-bg-hover: #144162;
+$secondary-color: #dde7ee;
+$background-light: #edf2f6;
+$text-primary: #000000de;
+$text-secondary: #0009;
+$white: #fff;
+$black: #000;
+$error:#DC362E;
+
+$dark1: #02223F;
+$dark2: #1c5c8c;
+$dark3: #144162;
+$white1: #FFFFFF;
+$black: #000;
+$background-color :#E5F7FF;
+$inputColor: #EDF2F6;
+$textColor:#667085;
+$border-table-color:#EAECF0;
+
+$border-color: $color-secondary;
+$border-hover-color: darken($color-secondary, 10%);
+$border-focus-color: $color-primary;
+
+$rounded-sm: 6px;
+$rounded-md: 8px;
+$rounded-lg: 12px;
+$rounded-xl: 16px;
+$rounded-xxl: 20px;
+
+$border-radius-sm: 6px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+$border-radius-xl: 16px;
+$border-radius-xxl: 20px;
+
+$border-x-width: 7px;
+
+$shadow-sm: 0px 2px 10px 0px rgba(0, 21, 66, 0.05);
+
+// Spacing & Layout
+$spacing-xs: 4px;
+$spacing-sm: 6px;
+$spacing-md: 8px;
+$spacing-lg: 16px;
+$spacing-xl: 24px;
+$spacing-xxl: 32px;
+
+// Font Sizes
+$font-xs: 12px;
+$font-sm: 14px;
+$font-base: 16px;
+$font-lg: 18px;
+$font-xl: 20px;
+$font-2xl: 24px;
+$font-3xl: 30px;
+$font-4xl: 36px;
+$font-5xl: 48px;
+$font-6xl: 60px;
+$font-7xl: 72px;
+$font-8xl: 96px;
+$font-9xl: 128px;
+
+
+// Transitions & Effects
+$transition-time: 0.3s;
+$transition: all $transition-time ease-in-out ; 
+$box-shadow-light: 0 2px 5px rgba(0, 0, 0, 0.1);
+$box-shadow-hover: 0 4px 10px rgba(0, 0, 0, 0.15);
+$box-shadow-card: 0px 7px 24.8px 0px #002E521A;
+
+// Font Weights
+$thin: 100;
+$extra-light: 200;
+$light: 300;
+$regular: 400;
+$medium: 500;
+$semi-bold: 600;
+$bold: 700;
+$extra-bold: 800;
+$black: 900;
+
+
+@mixin rtl {
+  [dir="rtl"] & {
+    @content;
+  }
+}
+
+// Global Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin responsive-size($xs, $sm, $md) {
+  width: $xs;
+  height: $xs;
+  font-size: 16px;
+  font-weight: $regular;
+
+  @include for-large-phones {
+    width: $sm;
+    height: $sm;
+    font-size: 18px;
+    font-weight: $medium;
+  }
+
+  @include for-tablet {
+    width: $md;
+    height: $md;
+    font-size: 20px;
+    font-weight: $semi-bold;
+  }
+}

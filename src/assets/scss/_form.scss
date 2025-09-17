@@ -1,0 +1,490 @@
+@import "./_variables";
+@import "./_mediaquery";
+
+// Mixins for responsive size
+@mixin responsive-size($xs, $sm, $md, $lg: null, $xl: null) {
+  width: $xs;
+  height: $xs;
+  font-size: $font-base;
+  font-weight: $regular;
+
+  @include for-large-phones {
+    width: $sm;
+    height: $sm;
+    font-size: $font-lg;
+    font-weight: $medium;
+  }
+
+  @include for-tablet {
+    width: $md;
+    height: $md;
+    font-size: $font-xl;
+    font-weight: $semi-bold;
+  }
+
+  @if $lg {
+    @include for-desktop {
+      width: $lg;
+      height: $lg;
+      font-size: 22px;
+      font-weight: $bold;
+    }
+  }
+
+  @if $xl {
+    @include for-lg-screen {
+      width: $xl;
+      height: $xl;
+      font-size: $font-2xl;
+      font-weight: $extra-bold;
+    }
+  }
+}
+
+@mixin form-box {
+  display: grid;
+  width: 100%;
+  gap: 24px;
+}
+
+.form-box-sm {
+  @include form-box;
+  grid-template-columns: 1fr
+}
+
+.form-box-md {
+  @include form-box;
+  grid-template-columns: repeat(2, 1fr);
+
+  @media (max-width: 583px) {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+.form-box-lg {
+  @include form-box;
+  grid-template-columns: repeat(3, 1fr);
+
+  @media (max-width: 1023px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 583px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-control {
+
+  &.checkbox,
+  &.switch {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+  }
+
+  &.form-label {
+    font-size: $font-sm;
+    font-weight: $medium;
+    color: #667085;
+  }
+
+  .required {
+    color: $error;
+    margin-left: 3px;
+  }
+}
+
+.form-editor {
+  max-width: 537px !important;
+  .ck.ck-editor {
+    border: none;
+
+    .ck-editor__top .ck-sticky-panel__content {
+      border: solid #F1F1F6;
+      border-width: 1px 1px 0 1px;
+      border-radius: 8px 8px 0 0 !important;
+    }
+  }
+
+  .ck.ck-editor__editable:not(.ck-editor__nested-editable) {
+    min-height: 200px;
+    border: none;
+    box-shadow: none !important;
+    padding-inline-start: 30px !important;
+  }
+
+  .ck.ck-editor__editable.ck-focused:not(.ck-editor__nested-editable) {
+    border: solid #F1F1F6;
+    border-width: 0 1px 1px 1px;
+    border-radius: 0px 0px 8px 8px !important;
+  }
+
+  .ck.ck-editor__top .ck-sticky-panel__content {
+    margin: 0 !important;
+    display: block !important;
+  }
+
+}
+
+.ck-toolbar {
+  border-radius: 7px 7px 0 0 !important;
+  padding: 5px 8px !important;
+  border: solid #F1F1F6;
+  background-color: #F1F1F6 !important;
+
+
+}
+
+.ck-dropdown__panel {
+  border-radius: $rounded-md !important;
+  border: 1px solid #f1f1f6 !important;
+  box-shadow: 0px 4px 2.9px 0px #b9b9b926;
+
+  ul {
+    padding: 10px 5px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+}
+
+.ck.ck-list__item>.ck-button.ck-on {
+  background-color: #edf2f6 !important;
+  font-weight: $medium !important;
+  color: #191919;
+
+}
+
+.ck.ck-toolbar .ck-button {
+  color: #191919;
+
+  &:focus {
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  &:hover {
+    background-color: #edf2f6 !important;
+
+  }
+}
+
+
+.form-checkbox {
+  margin-block: $spacing-sm;
+  padding: 0;
+  border-radius: $spacing-md;
+  width: 30px;
+  height: 30px;
+
+  &.error {
+    border: 2px solid $error;
+  }
+}
+
+.form-radio {
+  margin-block: $spacing-sm;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  color: #a9acaa;
+
+  &.Mui-checked {
+    color: $color-primary !important;
+  }
+}
+
+.form-field {
+  width: 100%;
+
+  .MuiOutlinedInput-root {
+    border-radius: $rounded-lg;
+    height: 48px;
+    transition: $transition;
+    background-color: transparent;
+    font-size: 14px;
+    &:hover fieldset {
+      border-color: #D6D6D7 !important;
+    }
+
+    &.Mui-focused {
+      background-color: transparent;
+      font-weight: $medium;
+
+      .MuiOutlinedInput-notchedOutline {
+        border-color: #D6D6D7 !important;
+      }
+    }
+
+    &.Mui-error,
+    &:hover.Mui-error {
+      .MuiOutlinedInput-notchedOutline {
+        border-color: $error !important;
+      }
+    }
+  }
+
+  .MuiOutlinedInput-notchedOutline {
+    border: 1px solid #D6D6D7;
+    transition: $transition;
+  }
+
+  &:hover .MuiOutlinedInput-notchedOutline {
+    border: 1px solid #D6D6D7;
+
+  }
+
+  // Autofill fix
+  input:-webkit-autofill {
+    background-color: transparent !important;
+    transition: background-color 9999s ease-in-out;
+    color: #999999 !important;
+    font-weight: $regular !important;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: transparent !important;
+    }
+  }
+}
+
+.form-file {
+
+  .form-attachment {
+    width: 100%;
+
+    .MuiOutlinedInput-root {
+
+      border-radius: $rounded-lg;
+      height: 40px;
+      transition: $transition;
+      background-color: transparent;
+
+      &:hover {
+        background-color: $background-light;
+      }
+
+      &.Mui-focused {
+        background-color: transparent;
+        font-weight: $medium;
+
+        .MuiOutlinedInput-notchedOutline {
+          border-color: $border-focus-color;
+        }
+      }
+
+      .MuiOutlinedInput-notchedOutline,
+      .Mui-focused .MuiOutlinedInput-notchedOutline {
+        border-inline-start-width: $border-x-width;
+      }
+
+      &.Mui-error,
+      &:hover.Mui-error {
+        .MuiOutlinedInput-notchedOutline {
+          border-color: $error !important;
+        }
+      }
+    }
+
+    .MuiOutlinedInput-notchedOutline {
+      border: 1px solid $border-color;
+      transition: $transition;
+
+    }
+
+    &:hover .MuiOutlinedInput-notchedOutline {
+      border-color: $border-hover-color;
+    }
+  }
+
+  .attachment-list {
+    background-color: #F5F5F5;
+    margin-top: 8px;
+    padding: 8px;
+    border-radius: 8px;
+    width: 100%;
+    color: #6c757d
+  }
+
+}
+
+.form-select {
+  overflow-y: hidden;
+  width: 100% !important;
+
+  &.MuiOutlinedInput-root {
+    border-radius: $rounded-sm !important;
+    height: 36px !important;
+    color: #667085 !important;
+    transition: $transition !important;
+    background-color: $white !important;
+
+    &:hover {
+      background-color: $background-light !important;
+    }
+
+    &.Mui-focused {
+      background-color: transparent !important;
+      font-weight: $medium;
+
+      .MuiOutlinedInput-notchedOutline {
+        border-color: $border-focus-color !important;
+      }
+    }
+
+    .MuiOutlinedInput-notchedOutline {
+      border: 1px solid $border-color !important;
+      transition: $transition;
+    }
+
+    &.Mui-error,
+    &:hover.Mui-error {
+      .MuiOutlinedInput-notchedOutline {
+        border-color: $error !important;
+      }
+    }
+  }
+
+  &.long-border .MuiOutlinedInput-notchedOutline {
+    border-inline-start-width: $border-x-width !important;
+  }
+
+
+  &:hover .MuiOutlinedInput-notchedOutline {
+    border-color: $border-hover-color !important;
+  }
+
+  .MuiSelect-icon {
+    padding-inline: 5px;
+    border-inline-start: 1px solid $inputColor !important;
+    font-size: 40px;
+    color: #949494;
+    position: absolute !important;
+    right: 0 !important;
+  }
+
+  .MuiSelect-select {
+    font-size: 14px !important;
+  }
+
+  .MuiSelect-iconOpen {
+    border-inline-end: 1px solid $inputColor !important;
+    border-inline-start: 0;
+  }
+
+  .MuiOutlinedInput-notchedOutline {
+    border: 0.5px solid $inputColor !important;
+    transition: $transition !important;
+  }
+}
+
+// form select Menu
+.MuiMenu-paper {
+  border-radius: $rounded-xl !important;
+  box-shadow: 0px 2px 9.9px 0px #C3C8D340 !important;
+  border: 1px solid #D6D6D7 !important;
+
+  ul {
+    padding: 12px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    color: #292929 !important;
+
+    li.Selected {
+      size: 16px !important;
+      background-color: #F4F4F4 !important;
+      font-weight: $medium !important;
+    }
+  }
+
+  .menu-title {
+    position: sticky;
+    top: 0;
+    background-color: #fff !important;
+    z-index: 5 !important;
+    color: #c5c5c5 !important;
+    opacity: 1 !important;
+  }
+
+  .MuiButtonBase-root {
+    &.Mui-selected {
+      background-color: transparent !important;
+    }
+
+    &:hover {
+      background-color: $background-light !important;
+      transition: $transition !important;
+    }
+
+    height: 32px !important;
+    border-radius: $rounded-sm !important;
+    padding-inline: 8px !important;
+    color: #666666;
+    font-size: 14px !important;
+    font-weight: $regular !important;
+  }
+}
+
+.form-otp {
+  width: fit-content;
+  margin-inline: auto;
+  gap: $spacing-md;
+
+  .MuiOutlinedInput-root {
+    border-radius: $rounded-lg;
+    transition: $transition;
+    background-color: transparent;
+    @include responsive-size(40px, 50px, 60px);
+
+    &.error {
+      border: 1px solid $error !important;
+    }
+  }
+
+  .MuiOutlinedInput-notchedOutline {
+    border: 1px solid $border-color;
+    transition: $transition;
+  }
+
+  .MuiOutlinedInput-root:hover {
+    background-color: $background-light;
+    border: 1px solid $border-hover-color;
+  }
+
+  &:hover .MuiOutlinedInput-notchedOutline {
+    border-color: $border-hover-color;
+  }
+
+  .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: $border-focus-color;
+  }
+}
+
+.form-otp-error {
+  .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+    border-color: $error !important;
+
+    &:hover .MuiOutlinedInput-notchedOutline {
+      border-color: $error !important;
+    }
+  }
+}
+
+.form-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.MuiFormHelperText-root {
+  [dir="rtl"] & {
+    text-align: right;
+  }
+}

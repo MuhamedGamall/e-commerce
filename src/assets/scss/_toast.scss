@@ -1,0 +1,25 @@
+.costum-toast {
+  .Toastify__toast {
+    padding: 6px 16px !important;
+    border-radius: 12px !important;
+    width: fit-content !important;
+    white-space: nowrap !important;
+  }
+  .Toastify__toast--error {
+    background-color: #fff2f2 !important;
+  }
+
+  .Toastify__toast--success {
+    background-color: #ecfdf3 !important;
+  }
+  color: #3c4856 !important;
+}
+html[dir="rtl"] .Toastify__close-button {
+  left: 8px;  
+  right: auto;
+}
+
+html[dir="rtl"] .Toastify__toast {
+  direction: rtl;
+  text-align: right;
+}
