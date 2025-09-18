@@ -4,7 +4,7 @@ const TermsConditions = () => {
   );
 
   return (
-    <div className="container">
+    <div className="container terms-conditions">
       <header className="header">
         <h1 className="main-title">Terms Of Services</h1>
         <p className="update-date">Updated on 14th January, 2024</p>
@@ -42,7 +42,7 @@ const TermsConditions = () => {
 
       <section className="section-card">
         <h2 className="section-title">Definitions and key terms</h2>
-        <p className="body-texx" style={{ textAlign: "left" }}>
+        <p className="body-text" style={{ textAlign: "left" }}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Ut enim minim
           veniam.

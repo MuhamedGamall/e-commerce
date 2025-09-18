@@ -99,7 +99,7 @@ const RelatedArticles = () => {
 
 const FAQs = () => {
   return (
-    <div className="container">
+    <div className="container FAQs">
       <FeaturedArticle />
       <RelatedArticles />
     </div>
