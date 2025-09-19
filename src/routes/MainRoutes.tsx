@@ -1,5 +1,7 @@
 import { redirect } from "react-router-dom";
 
+import { lazy } from "react";
+const ProductPage = lazy(() => import("../pages/product-details"));
 import { MainLayout } from "../layouts";
 const MainRoutes = [
   {
@@ -23,13 +25,12 @@ const MainRoutes = [
   {
     path: "/:locale",
     element: <MainLayout />,
-    // children: [
-    //   {
-    //     path: "terms-conditions",
-    //     element: <TermsConditions />,
-    //   },
-    // ],
+    children: [
+      {
+        path: "product-details",
+        element: <ProductPage />,
+      },
+    ],
   },
 ];
-
 export default MainRoutes;
