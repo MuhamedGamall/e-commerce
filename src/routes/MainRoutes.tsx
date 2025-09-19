@@ -1,9 +1,10 @@
 import { redirect } from "react-router-dom";
-
 import { lazy } from "react";
-const ProductPage = lazy(() => import("../pages/product-details"));
 import { MainLayout } from "../layouts";
+
+const ProductPage = lazy(() => import("../pages/product-details"));
 const FAQs = lazy(() => import("../pages/FAQs"));
+const TermsConditions = lazy(() => import("../pages/terms-conditions"));
 const MainRoutes = [
   {
     path: "/",
@@ -34,6 +35,10 @@ const MainRoutes = [
       {
         path: "FAQs",
         element: <FAQs />,
+      },
+      {
+        path: "terms-conditions",
+        element: <TermsConditions />,
       },
     ],
   },
