@@ -3,6 +3,7 @@ import { redirect } from "react-router-dom";
 import { lazy } from "react";
 const ProductPage = lazy(() => import("../pages/product-details"));
 import { MainLayout } from "../layouts";
+const FAQs = lazy(() => import("../pages/FAQs"));
 const MainRoutes = [
   {
     path: "/",
@@ -29,6 +30,10 @@ const MainRoutes = [
       {
         path: "product-details",
         element: <ProductPage />,
+      },
+      {
+        path: "FAQs",
+        element: <FAQs />,
       },
     ],
   },
