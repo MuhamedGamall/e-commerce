@@ -1,6 +1,7 @@
 import { redirect } from "react-router-dom";
 import { lazy } from "react";
 import { MainLayout } from "../layouts";
+import { CartPage } from "../pages";
 
 const ProductPage = lazy(() => import("../pages/product-details"));
 const FAQs = lazy(() => import("../pages/FAQs"));
@@ -39,6 +40,10 @@ const MainRoutes = [
       {
         path: "terms-conditions",
         element: <TermsConditions />,
+      },
+      {
+        path: "cart",
+        element: <CartPage />,
       },
     ],
   },
