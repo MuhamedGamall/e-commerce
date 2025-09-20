@@ -4,12 +4,10 @@ import {
   useEffect,
   useState,
 } from "react";
-import { CurrentUserModel } from "../models/user/CurrentUserModel";
-import { GetCurrentUser } from "../services/CurrentUserService";
 
 interface GlobalContextProps {
-  currentUser: CurrentUserModel | null | undefined;
-  setCurrentUser: (user: CurrentUserModel | null) => void;
+  currentUser:  null | undefined;
+  setCurrentUser: (user:  null) => void;
   locale: string;
   setLocale: (lang: string) => void;
   defaultValue: string
@@ -18,16 +16,16 @@ interface GlobalContextProps {
 const GlobalContext = createContext<GlobalContextProps>({} as GlobalContextProps);
 const defaultValue = 'en'
 export function GlobalProvider({ children }: { children: React.ReactNode }) {
-  const [currentUser, setCurrentUser] = useState<CurrentUserModel | null>();
+  const [currentUser, setCurrentUser] = useState< null>();
   const [locale, setLocale] = useState<string>(() => {
     return localStorage.getItem("locale") || "en";
   });
 
-  useEffect(() => {
-    if (window && localStorage.getItem("token")) {
-      setCurrentUser(GetCurrentUser());
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (window && localStorage.getItem("token")) {
+  //     setCurrentUser(GetCurrentUser());
+  //   }
+  // }, []);
 
   useEffect(() => {
     localStorage.setItem("locale", locale);
