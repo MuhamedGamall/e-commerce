@@ -6,14 +6,10 @@ import {
   StraightenOutlined,
 } from "@mui/icons-material";
 import {
-  Avatar,
   Box,
   Button,
   Card,
-  CardActions,
   CardContent,
-  CardMedia,
-  Checkbox,
   IconButton,
   Rating,
   Stack,
@@ -21,7 +17,7 @@ import {
   ToggleButtonGroup,
   Typography,
   useMediaQuery,
-  useTheme,
+  useTheme
 } from "@mui/material";
 import { CiInstagram } from "react-icons/ci";
 import { FaFacebookF, FaLinkedin } from "react-icons/fa";
@@ -35,15 +31,10 @@ import { RiShareForwardLine } from "react-icons/ri";
 import compareIcont from "../assets/icons/compare.png";
 // @ts-ignore
 import placeholderImage from "../assets/images/card-placeholder.png";
-// @ts-ignore
-import like from "../assets/icons/like.png";
 
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import StarIcon from "@mui/icons-material/Star";
-import { FiShoppingCart } from "react-icons/fi";
 import { HiOutlinePlus } from "react-icons/hi2";
-import { RiDiscountPercentFill } from "react-icons/ri";
 import ResponsiveCarousel from "../components/common/Carousel";
+import { FrequentlyProductCard, ProductCard, ReviewCard } from "../components/common/cards";
 
 const ColorOption = styled(ToggleButton)(
   ({ selected, color }: any) => `
@@ -328,185 +319,7 @@ const GreaseTrapService = () => {
   );
 };
 
-const ReviewCard = () => {
-  return (
-    <Card className="review-card">
-      <CardContent className="review-card__content">
-        <Box className="review-card__header">
-          <Box className="review-card__user">
-            <Avatar className="review-card__avatar">J</Avatar>
-            <Box>
-              <Typography className="review-card__name">
-                Jeffry Graham
-              </Typography>
-              <Typography className="review-card__date">2 weeks ago</Typography>
-            </Box>
-          </Box>
-          <Rating
-            value={5}
-            precision={0.1}
-            readOnly
-            size="small"
-            className="review-card__stars"
-          />
-        </Box>
 
-        <Typography className="review-card__text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore consectetur adipiscing elit,
-          incididunt ut labore Lorem ipsum dolor sit amet, consectetur
-          adipiscing elit, sed do eiusmod tempor incididunt ut labore
-        </Typography>
-
-        <Box className="review-card__recommend">
-          <Typography className="review-card__recommend-label">
-            Recommend?
-          </Typography>
-          <div className="button-group">
-            <Button className="btn">
-              <img src={like} width={20} alt="like" />
-              Yes
-            </Button>
-            <Button className="btn btn--no">
-              <img src={like} width={20} alt="like" />
-              No
-            </Button>
-          </div>
-        </Box>
-      </CardContent>
-    </Card>
-  );
-};
-
-const ProductCard = () => {
-  return (
-    <Card className="product-card">
-      {/* Image Section */}
-      <Box className="product-card__image-wrapper">
-        <Box className="product-card__new">New</Box>
-
-        <IconButton className="product-card__discount">
-          <RiDiscountPercentFill color="black" size={24} />
-        </IconButton>
-
-        <CardMedia
-          component="img"
-          image={placeholderImage}
-          alt="Product"
-          className="product-card__image"
-        />
-
-        <IconButton className="product-card__favorite">
-          <FavoriteBorderIcon />
-        </IconButton>
-      </Box>
-
-      {/* Content */}
-      <CardContent className="product-card__content">
-        <Box className="product-card__title-row">
-          <Typography variant="body2" className="product-card__title">
-            Product Name
-          </Typography>
-          <Box>
-            <Typography component="span" className="product-card__price-new">
-              123$
-            </Typography>
-            <Typography component="span" className="product-card__price-old">
-              456$
-            </Typography>
-          </Box>
-        </Box>
-
-        <Box className="product-card__rating">
-          <StarIcon />
-          <Typography variant="body1" className="product-card__rating-text">
-            4.2 (1.8k)
-          </Typography>
-        </Box>
-
-        <Typography variant="body2" className="product-card__desc">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore amet consectetur adipiscing elit.
-        </Typography>
-      </CardContent>
-
-      {/* Add to cart */}
-      <CardActions sx={{ padding: "0 !important" }}>
-        <Button
-          variant="contained"
-          fullWidth
-          startIcon={<FiShoppingCart />}
-          className="product-card__btn"
-        >
-          Add to cart
-        </Button>
-      </CardActions>
-    </Card>
-  );
-};
-
-const FrequentlyProductCard = () => {
-  return (
-    <Card className="freq-card">
-      {/* Image Section */}
-      <Box className="freq-card__image-wrapper">
-        <CardMedia
-          component="img"
-          image={placeholderImage}
-          alt="Product"
-          className="freq-card__image"
-        />
-
-        <Box className="freq-card__label">New</Box>
-
-        <IconButton className="freq-card__discount">
-          <RiDiscountPercentFill color="black" size={24} />
-        </IconButton>
-
-        <IconButton className="freq-card__favorite">
-          <FavoriteBorderIcon />
-        </IconButton>
-      </Box>
-
-      {/* Content Section */}
-      <Box className="freq-card__content">
-        <CardContent className="freq-card__content-inner">
-          {/* Title + Price + Checkbox */}
-          <Box className="freq-card__title-row">
-            <Typography variant="body1" className="freq-card__title">
-              Product Name
-            </Typography>
-            <Checkbox className="freq-card__checkbox" checked />
-          </Box>
-
-          {/* Rating */}
-          <Box className="freq-card__rating">
-            <StarIcon />
-            <Typography className="freq-card__rating-text">
-              4.2 (1.8k)
-            </Typography>
-          </Box>
-
-          {/* Price */}
-          <Box className="freq-card__price">
-            <Typography component="span" className="freq-card__price-new">
-              123$
-            </Typography>
-            <Typography component="span" className="freq-card__price-old">
-              456$
-            </Typography>
-          </Box>
-
-          {/* Description */}
-          <Typography className="freq-card__desc">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore amet consectetur adipiscing elit
-          </Typography>
-        </CardContent>
-      </Box>
-    </Card>
-  );
-};
 
 const ProductDetails = () => {
   const [quantity, setQuantity] = useState(5);
