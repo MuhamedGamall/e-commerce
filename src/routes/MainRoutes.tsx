@@ -2,6 +2,7 @@ import { redirect } from "react-router-dom";
 import { lazy } from "react";
 
 import { MainLayout } from "../layouts";
+import { CartPage } from "../pages";
 
 const MainRoutes = [
   {
@@ -25,7 +26,12 @@ const MainRoutes = [
   {
     path: "/:locale",
     element: <MainLayout />,
-    children: []
+    children: [
+      {
+        path:'cart',
+        element:<CartPage/>
+      }
+    ]
   },
 ];
 
